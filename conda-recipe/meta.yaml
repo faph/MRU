@@ -1,0 +1,31 @@
+package:
+  name: mru
+  version: {{ environ.get('GIT_DESCRIBE_TAG', '0.0.0')[1:] }}
+
+build:
+  number: {{ environ.get('GIT_DESCRIBE_NUMBER', 0) }}
+
+source:
+  git_url: ..
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - appdirs
+
+  run:
+    - python
+    - appdirs
+
+test:
+  # Python imports
+  imports:
+    - mru
+
+about:
+  home: https://github.com/faph/MRU
+  license: MIT
+  license_file: LICENSE
+  summary: Python package to manage Most Recently Used (MRU) file paths.
+  readme: README.md
