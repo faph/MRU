@@ -32,11 +32,13 @@ Entries are automatically saved to disk, so opening the application again works 
 `MRU` instances are iterables (`collections.deque`, more precisely). So you can iterate over the object directly,
 convert to lists etc. The most recent item comes first:
 
+```python
 >>> for path in history:
 ...     print(path)
 ...
 ~/Documents/The Wealth of Nations.pdf
 ~/Documents/Intro.pdf
+```
 
 By default, `MRU` remembers up to 20 paths. Change this like this:
 
