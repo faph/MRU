@@ -56,7 +56,9 @@ Where are the file paths saved? Depending on the platform, somewhere in the user
 `C:\Users\Adam Smith\AppData\Local\Balliol College\Economy App\mru`.
 
 MRU uses the [AppDirs module](https://github.com/ActiveState/appdirs) to find a suitable location using
-`user_config_dir(app, org)`.
+`user_config_dir(app, org)`. The organisation name is optional, but omitting it risks that the MRU will be saved in
+another application's configuration folder.
+
 
 ## Licence
 
