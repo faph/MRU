@@ -27,5 +27,5 @@ about:
   home: https://github.com/faph/MRU
   license: MIT
   license_file: LICENSE
-  summary: Python package to manage Most Recently Used (MRU) file paths.
+  summary: Small Python module to manage Most Recently Used (MRU) file paths.
   readme: README.md
