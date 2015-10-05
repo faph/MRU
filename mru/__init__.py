@@ -54,7 +54,11 @@ class MRU(deque):
         self.org = org
         #: Full path of file for saving MRU paths
         self.file_path = os.path.join(appdirs.user_config_dir(app, org), self.FILE_NAME)
-        os.makedirs(os.path.dirname(self.file_path), exist_ok=True)  # create folder in advance
+        try:
+            os.makedirs(os.path.dirname(self.file_path))  # create folder in advance
+        except OSError:
+            if not os.path.isdir(os.path.dirname(self.file_path)):
+                raise
         try:
             # Load paths from file if possible
             with open(self.file_path, 'r', encoding='utf-8') as f:
