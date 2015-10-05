@@ -40,7 +40,7 @@ convert to lists etc. The most recent item comes first:
 ~/Documents/Intro.pdf
 ```
 
-By default, `MRU` remembers up to 20 paths. Change this like this:
+By default, the MRU module remembers up to 20 paths. Change this like this:
 
 ```python
 >>> history = MRU(app='Economy App', org='Balliol College', maxlen=10)
@@ -54,8 +54,14 @@ To remove all entries:
 []
 ```
 
-Where are the file paths saved? Depending on the platform, somewhere in the user's profile. For example on Windows:
-`C:\Users\Adam Smith\AppData\Local\Balliol College\Economy App\mru`.
+Where are the MRU entries saved? Depending on the platform, somewhere in the user's profile:
+
+```python
+>>> history.file_path
+'C:\\Users\\Adam Smith\\AppData\\Local\\Balliol College\\Economy App\\mru'
+```
+
+Assuming you're Adam Smith and you use Windows, that is!
 
 MRU uses the [AppDirs module](https://github.com/ActiveState/appdirs) to find a suitable location using
 `user_config_dir(app, org)`. The organisation name is optional, but omitting it risks that the MRU will be saved in
