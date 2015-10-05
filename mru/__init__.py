@@ -37,6 +37,7 @@ import os.path
 class MRU(deque):
     """Most Recently Used (MRU) file paths collection"""
 
+    #: File name for saving MRU paths
     FILE_NAME = 'mru'
 
     def __init__(self, app, org=None, maxlen=20):
@@ -51,9 +52,11 @@ class MRU(deque):
         """
         self.app = app
         self.org = org
+        #: Full path of file for saving MRU paths
         self.file_path = os.path.join(appdirs.user_config_dir(app, org), self.FILE_NAME)
         os.makedirs(os.path.dirname(self.file_path), exist_ok=True)  # create folder in advance
         try:
+            # Load paths from file if possible
             with open(self.file_path, 'r', encoding='utf-8') as f:
                 data = [line.rstrip('\n') for line in f]
         except OSError:
