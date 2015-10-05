@@ -23,9 +23,9 @@
 # SOFTWARE.
 
 from ._version import get_versions
-
 __version__ = get_versions()['version']
 del get_versions
+__all__ = ['MRU']
 
 from collections import deque
 from collections.abc import Iterable
