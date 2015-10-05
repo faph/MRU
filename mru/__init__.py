@@ -40,6 +40,15 @@ class MRU(deque):
     FILE_NAME = 'mru'
 
     def __init__(self, app, org=None, maxlen=20):
+        """
+        :param app: Application name
+        :type app: str
+        :param org: Organisation name (default: ``None``)
+        :type org: str
+        :param maxlen: Maxium number of paths to remember
+        :type maxlen: int
+        :return: Iterable collection of MRU paths
+        """
         self.app = app
         self.org = org
         self.file_path = os.path.join(appdirs.user_config_dir(app, org), self.FILE_NAME)
@@ -52,6 +61,7 @@ class MRU(deque):
         deque.__init__(self, data, maxlen=maxlen)
 
     def save(action):
+        """Decorator function to save MRU to file"""
         def saved_action(self, *args, **kwargs):
             action(self, *args, **kwargs)
             with open(self.file_path, 'w', encoding='utf-8') as f:
@@ -60,6 +70,12 @@ class MRU(deque):
 
     @save
     def add(self, paths):
+        """
+        Add one or multiple file paths to the collection.
+
+        :param paths: Filepath(s) to add
+        :type paths: str or list (or other iterable)
+        """
         if isinstance(paths, str):
             self.appendleft(paths)
         elif isinstance(paths, Iterable):
@@ -69,4 +85,5 @@ class MRU(deque):
 
     @save
     def clear(self):
+        """Delete all file paths from the collection."""
         deque.clear(self)
